@@ -1,0 +1,364 @@
+<!doctype html>
+<!-- דף הקהילה אחרי וובינר. נבנה מהשלד של /landing-page, ערכת sun. קישור אישי (?c=): לחיצה משייכת את ההתעניינות מהוובינר לאוריאל, בלי טופס. בלי מזהה או בכישלון: וואטסאפ. -->
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#1e3312" />
+  <title>כל מה שיש בקהילה | שווים יותר</title>
+  <meta name="description" content="הקבוצות, הערוצים וההטבות של קהילת שווים יותר, במקום אחד." />
+  <meta name="robots" content="noindex" />
+  <link rel="canonical" href="https://shavimyoter2024-a11y.github.io/kehila/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="he_IL" />
+  <meta property="og:title" content="כל מה שיש בקהילת שווים יותר" />
+  <meta property="og:description" content="הקבוצות, הערוצים וההטבות, במקום אחד." />
+  <meta property="og:image" content="https://shavimyoter2024-a11y.github.io/kehila/assets/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content="https://shavimyoter2024-a11y.github.io/kehila/" />
+  <link rel="icon" href="assets/logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=Heebo:wght@700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --deep:#16260d; --olive:#334f1f; --sun:#facd07; --sun-hi:#ffe15c; --ink:#182410; --white:#fff;
+      --soft:rgba(255,255,255,.86);
+      --f-display:"Heebo","Assistant",system-ui,sans-serif;
+      --f-body:"Assistant","Heebo",system-ui,"Segoe UI",sans-serif;
+      --gutter:24px; --ease:cubic-bezier(.22,1,.36,1);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; min-height: 100dvh; color: var(--white); background: var(--deep);
+      font: 400 17px/1.6 var(--f-body); -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    h1, p { margin: 0; }
+    :focus-visible { outline: 3px solid var(--sun-hi); outline-offset: 3px; }
+    .skip { position: absolute; inset-inline-start: 16px; top: -80px; z-index: 50; background: var(--white); color: var(--ink); padding: 8px 16px; border-radius: 8px; }
+    .skip:focus { top: 16px; }
+    bdi { white-space: nowrap; }
+    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+    .bg { position: fixed; inset: 0; z-index: -1; background: linear-gradient(180deg, #1e3312, #16260d); }
+
+    /* ═════ הירו ═════ */
+    .page { width: min(1200px, calc(100% - 2 * var(--gutter))); margin-inline: auto; }
+    .hero { display: flex; flex-direction: column; align-items: center; text-align: center; padding: max(24px, env(safe-area-inset-top)) 0 24px; }
+    .logo { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid #fff; }
+    .eyebrow { margin-top: 12px; color: var(--soft); font-size: 16px; line-height: 1.3; font-weight: 700; }
+    h1 { margin-top: 8px; font: 900 clamp(32px, 10.2vw, 64px)/1.1 var(--f-display); }
+    h1 span { display: block; }
+    h1 .accent { color: var(--sun); }
+    .lead { margin-top: 12px; max-width: 46ch; font-size: 17px; line-height: 1.5; color: var(--soft); text-wrap: balance; }
+    .pick { margin-top: 8px; font: 700 17px/1.4 var(--f-body); color: var(--white); }
+
+    /* ═════ הכפתורים: מקשים פיזיים. הקצה התחתון יורד כשלוחצים ═════ */
+    .tiles { list-style: none; margin: 0 auto; padding: 0 0 40px; display: grid; gap: 16px; max-width: 560px; }
+    .tile {
+      --face: #4a6f2c; --edge: #2c4518; --text: var(--white); --subc: var(--soft); --icon: #c2d69a; --depth: 5px;
+      display: flex; align-items: center; gap: 12px; height: 100%; min-height: 76px; padding: 14px 16px;
+      border-radius: 16px; color: var(--text); text-decoration: none; text-align: start;
+      background: var(--face);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 var(--depth) 0 var(--edge), 0 calc(var(--depth) + 5px) 12px rgba(0,0,0,.3);
+      -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+      transition: transform 150ms cubic-bezier(.3,1.5,.6,1), box-shadow 150ms ease-out;
+    }
+    /* is-down: באייפון :active על קישור לא נדלק בלי מאזין מגע */
+    .tile:active, .tile.is-down {
+      transform: translateY(calc(var(--depth) - 1px)); transition-duration: 40ms;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 1px 0 var(--edge), 0 2px 3px rgba(0,0,0,.3);
+    }
+    .ic { flex: none; width: 36px; height: 36px; display: grid; place-items: center; color: var(--icon); }
+    .ic svg { width: 30px; height: 30px; fill: currentColor; }
+    /* flex-column כדי שכותרת המשנה תשב תמיד בשורה משלה */
+    .txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+    .ttl { font: 800 18px/1.25 var(--f-display); }
+    .sub { font-size: 15px; line-height: 1.35; color: var(--subc); }
+
+    /* שלוש דרגות: אוריאל צהוב (הצהוב היחיד שנלחץ), קבוצה ירוק בהיר, כל השאר זית */
+    .tile--main { --face: #fbcf0f; --edge: #a98700; --text: var(--ink); --subc: #33401f; --icon: var(--ink); --depth: 7px; min-height: 96px; }
+    .tile--main .ttl { font-size: 21px; text-wrap: balance; }
+    .tile--main .ic svg { width: 34px; height: 34px; }
+    .tile--second { --face: #c2d69a; --edge: #7f9560; --text: var(--ink); --subc: #3f4a2a; --icon: #0b6b38; }
+    /* איזון אופטי: הצורות באותו גודל נראות שונות */
+    .tile--second .ic svg { transform: scale(.85); }
+    [data-cta="kehila-rights"] .ic svg, [data-cta="kehila-pension"] .ic svg { transform: scale(1.2); }
+
+    .tile--main.is-sending { cursor: wait; opacity: .85; }
+    .tile--main.is-sent { cursor: default; }
+
+    /* אוריאל נלחץ לבד כל כמה שניות, כמו אצבע שמראה איפה ללחוץ */
+    @media (prefers-reduced-motion: no-preference) {
+      .tile--main:not(:hover):not(:active):not(:focus-visible):not(.is-down):not(.is-sent) { animation: tap 5s ease-in-out 1.6s infinite; }
+    }
+    @keyframes tap {
+      0%, 88%, 100% { transform: none; box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 var(--depth) 0 var(--edge), 0 calc(var(--depth) + 5px) 12px rgba(0,0,0,.3); }
+      92%, 95% { transform: translateY(calc(var(--depth) - 1px)); box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 1px 0 var(--edge), 0 2px 3px rgba(0,0,0,.3); }
+    }
+
+    /* כניסה בטעינה. הכפתור הראשון גלוי מיד */
+    .tiles li { animation: rise .35s ease-out backwards; animation-delay: calc(var(--i) * 40ms); }
+    .tiles li:first-child { animation: none; }
+    @keyframes rise { from { opacity: 0; transform: translateY(10px); } }
+
+    @media (hover: hover) {
+      .tile:not(:active):not(.is-down):hover { transform: translateY(-2px); box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 calc(var(--depth) + 2px) 0 var(--edge), 0 calc(var(--depth) + 9px) 16px rgba(0,0,0,.32); }
+    }
+    @media (max-width: 959px) { .tiles li:nth-child(2) { margin-bottom: 8px; } }
+
+    /* ═════ פוטר ═════ */
+    footer { padding: 8px 0 max(32px, env(safe-area-inset-bottom)); text-align: center; font-size: 14px; color: rgba(255,255,255,.72); }
+    footer .logo { width: 48px; height: 48px; margin: 0 auto 12px; }
+    footer p { max-width: 640px; margin: 0 auto 8px; }
+    .legal-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 24px; }
+    .legal-nav a { display: inline-flex; align-items: center; min-height: 44px; color: inherit; }
+
+    /* 320: הכותרות נשארות בשורה אחת */
+    @media (max-width: 359px) {
+      .tile { padding: 12px; gap: 10px; }
+      .ttl { font-size: 16.5px; }
+      .tile--main .ttl { font-size: 18px; }
+      .sub { font-size: 14px; }
+    }
+
+    /* ═════ מחשב: 9 קוביות זהות, תוכן ממורכז בלי פינות ריקות ═════ */
+    @media (min-width: 960px) {
+      .hero { padding: 40px 0 36px; }
+      .logo { width: 64px; height: 64px; }
+      .eyebrow { font-size: 18px; }
+      footer .logo { width: 48px; height: 48px; }
+      h1 { font-size: clamp(56px, 5vw, 72px); }
+      .lead, .pick { font-size: 20px; }
+      .lead { max-width: none; }
+      .tiles { max-width: none; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 1fr; gap: 24px; padding-bottom: 64px; }
+      .tile, .tile--main { --depth: 8px; flex-direction: column; justify-content: center; gap: 12px; min-height: 208px; padding: 24px; border-radius: 20px; text-align: center; }
+      .ic, .tile--main .ic { width: 56px; height: 56px; }
+      .ic svg, .tile--main .ic svg { width: 48px; height: 48px; }
+      .txt { flex: none; gap: 4px; }
+      .ttl, .tile--main .ttl { font-size: 26px; line-height: 1.2; }
+      .sub { font-size: 17px; }
+    }
+
+    /* הפחתת תנועה: בלי תזוזה, התוכן גלוי מיד */
+    @media (prefers-reduced-motion: reduce) {
+      .tiles li { animation: fade .3s linear backwards; animation-delay: 0s; }
+      .tile { transition: none; }
+      .tile:hover, .tile:focus-visible, .tile:active { transform: none; }
+    }
+    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#tiles">דילוג לתוכן</a>
+  <div class="bg" aria-hidden="true"></div>
+
+  <div class="page">
+    <header class="hero" data-section="hero">
+      <img class="logo" src="assets/logo.jpg" alt="שווים יותר" width="104" height="104" />
+      <span class="eyebrow">תודה שנרשמתם לוובינר</span>
+      <h1><span>התגייסתם למעננו.</span><span class="accent">עכשיו תורנו.</span></h1>
+      <p class="lead">שווים יותר היא הקהילה של משרתי המילואים וכוחות הביטחון ובני משפחותיהם.</p>
+      <p class="pick">לא בטוחים במה להתחיל? נציג מהמועדון יעזור.</p>
+    </header>
+
+    <main>
+      <h2 class="sr">כל מה שיש בקהילה</h2>
+      <p class="sr" id="repStatus" role="status" aria-live="polite"></p>
+      <ul class="tiles" id="tiles" tabindex="-1">
+        <li style="--i:0">
+          <a class="tile tile--main" id="cbOpen" href="https://go.shavimyoter.co/kehila-rep" target="_blank" rel="noopener" data-cta="kehila-rep">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z"/></svg></span>
+            <span class="txt"><span class="ttl">אשמח שנציג מהמועדון יתקשר אליי</span><span class="sub">נציג המועדון של שווים יותר</span></span>
+          </a>
+        </li>
+        <li style="--i:1">
+          <a class="tile tile--second" href="https://go.shavimyoter.co/kehila-group" target="_blank" rel="noopener" data-cta="kehila-group">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.9 1.22 3.1.15.2 2.1 3.2 5.1 4.49.71.31 1.27.49 1.7.63.72.23 1.37.2 1.88.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88a9.82 9.82 0 0 1 6.99 2.9 9.82 9.82 0 0 1 2.9 7c0 5.45-4.44 9.87-9.9 9.87M20.47 3.54A11.8 11.8 0 0 0 12.05 0C5.5 0 .16 5.33.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.9 11.9 0 0 0 5.68 1.44h.01c6.55 0 11.89-5.33 11.89-11.89 0-3.18-1.24-6.16-3.47-8.4"/></svg></span>
+            <span class="txt"><span class="ttl">מצטרפים לוואטסאפ</span><span class="sub">הקבוצה הרשמית · ההצטרפות חינם</span></span>
+            <span class="sr">(נפתח בחלון חדש)</span>
+          </a>
+        </li>
+        <li style="--i:2">
+          <a class="tile" href="https://go.shavimyoter.co/kehila-rights" target="_blank" rel="noopener" data-cta="kehila-rights">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5.25 3.4 10.16 8 11 4.6-.84 8-5.75 8-11V5l-8-3Zm-1.06 13.54-3.18-3.18 1.41-1.41 1.77 1.76 4.42-4.42 1.42 1.42-5.84 5.83Z"/></svg></span>
+            <span class="txt"><span class="ttl">מה עוד מגיע לי?</span><span class="sub">ערוץ וואטסאפ · זכויות מילואים</span></span>
+            <span class="sr">(נפתח בחלון חדש)</span>
+          </a>
+        </li>
+        <li style="--i:3">
+          <a class="tile" href="https://go.shavimyoter.co/kehila-site" target="_blank" rel="noopener" data-cta="kehila-site">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.93 6h-2.95a15.6 15.6 0 0 0-1.38-3.56A8.03 8.03 0 0 1 18.93 8ZM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82A13.6 13.6 0 0 1 12 4.04ZM4.26 14a8.2 8.2 0 0 1 0-4h3.38a16.5 16.5 0 0 0 0 4H4.26Zm.81 2h2.95c.32 1.25.78 2.45 1.38 3.56A8 8 0 0 1 5.07 16Zm2.95-8H5.07a8 8 0 0 1 4.33-3.56A15.6 15.6 0 0 0 8.02 8ZM12 19.96A13.6 13.6 0 0 1 10.09 16h3.82A13.6 13.6 0 0 1 12 19.96ZM14.34 14H9.66a14.7 14.7 0 0 1 0-4h4.68a14.7 14.7 0 0 1 0 4Zm.26 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56ZM16.36 14a16.5 16.5 0 0 0 0-4h3.38a8.2 8.2 0 0 1 0 4h-3.38Z"/></svg></span>
+            <span class="txt"><span class="ttl">איפה כל ההטבות?</span><span class="sub">אתר הקהילה · הטבות, קורסים, הקלטות</span></span>
+            <span class="sr">(נפתח בחלון חדש)</span>
+          </a>
+        </li>
+        <li style="--i:4">
+          <a class="tile" href="https://go.shavimyoter.co/kehila-pension" target="_blank" rel="noopener" data-cta="kehila-pension">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20h16v2H4v-2Zm1-9h3v7H5v-7Zm5.5-4h3v11h-3V7ZM16 3h3v15h-3V3Z"/></svg></span>
+            <span class="txt"><span class="ttl">הפנסיה שלי בסדר?</span><span class="sub">תכנון פיננסי עם יועץ מוסמך</span><span class="sub">פגישה ללא עלות עם ארבע עונות</span></span>
+            <span class="sr">(נפתח בחלון חדש)</span>
+          </a>
+        </li>
+        <li style="--i:5">
+          <a class="tile" href="https://go.shavimyoter.co/kehila-club" target="_blank" rel="noopener" data-cta="kehila-club">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21.41 11.58 12.42 2.6A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l8.99 8.98a2 2 0 0 0 2.83 0l7-7a2 2 0 0 0 0-2.82ZM6.5 8A1.5 1.5 0 1 1 8 6.5 1.5 1.5 0 0 1 6.5 8Z"/></svg></span>
+            <span class="txt"><span class="ttl">ערוץ הצרכנות</span><span class="sub">ערוץ הוואטסאפ עם כל ההטבות של המועדון</span></span>
+            <span class="sr">(נפתח בחלון חדש)</span>
+          </a>
+        </li>
+        <li style="--i:6">
+          <a class="tile" href="https://go.shavimyoter.co/kehila-nadlan" target="_blank" rel="noopener" data-cta="kehila-nadlan">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 2 12h3v8a1 1 0 0 0 1 1h5v-6h2v6h5a1 1 0 0 0 1-1v-8h3L12 3Z"/></svg></span>
+            <span class="txt"><span class="ttl">מה קורה בנדל״ן?</span><span class="sub">הזדמנויות נדל״ן ייחודיות</span></span>
+            <span class="sr">(נפתח בחלון חדש)</span>
+          </a>
+        </li>
+        <li style="--i:7">
+          <a class="tile" href="https://go.shavimyoter.co/kehila-career" target="_blank" rel="noopener" data-cta="kehila-career">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 7h-4V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v3h20V9a2 2 0 0 0-2-2Zm-6 0h-4V5h4v2ZM2 14v5a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5h-8v2h-4v-2H2Z"/></svg></span>
+            <span class="txt"><span class="ttl">איפה יש עבודה?</span><span class="sub">הצעות עבודה וקריירה</span></span>
+            <span class="sr">(נפתח בחלון חדש)</span>
+          </a>
+        </li>
+        <li style="--i:8">
+          <a class="tile" href="https://go.shavimyoter.co/kehila-connect" target="_blank" rel="noopener" data-cta="kehila-connect">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M16 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm-8 0a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm0 2c-2.67 0-7 1.34-7 4v3h14v-3c0-2.66-4.33-4-7-4Zm8 0c-.33 0-.7.02-1.1.06A5.1 5.1 0 0 1 17 17v3h6v-3c0-2.66-4.33-4-7-4Z"/></svg></span>
+            <span class="txt"><span class="ttl">מי עוד בקהילה?</span><span class="sub">קבוצת החיבורים</span></span>
+            <span class="sr">(נפתח בחלון חדש)</span>
+          </a>
+        </li>
+      </ul>
+    </main>
+
+    <footer data-section="footer">
+      <img class="logo" src="assets/logo.jpg" alt="שווים יותר" width="48" height="48" loading="lazy" />
+      <nav class="legal-nav" aria-label="מסמכים">
+        <a href="terms.html">תנאי שימוש</a><a href="privacy.html">מדיניות פרטיות</a><a href="accessibility.html">הצהרת נגישות</a>      </nav>
+      <p>© שווים יותר ר.מ.י.ד בע"מ</p>
+    </footer>
+  </div>
+
+  <script>
+  (function () {
+    "use strict";
+    var PAGE_ID = "kehila";
+    var GA4_ID = "G-NR923MZ0BW"; // זרם "דפי נחיתה" בנכס 531302871 (wiring.md סעיף 8)
+
+    function track(name, params) {
+      try { if (window.gtag) window.gtag("event", name, params || {}); } catch (e) {}
+    }
+    var g = document.createElement("script");
+    g.async = true; g.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(GA4_ID);
+    document.head.appendChild(g);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag("js", new Date()); window.gtag("config", GA4_ID);
+
+    // סדר המקטעים בדף: ההירו, הקוביות לפי הסדר, הפוטר
+    var items = [].slice.call(document.querySelectorAll("[data-section], [data-cta^='kehila-']"));
+    function nameOf(el) { return el.getAttribute("data-section") || el.getAttribute("data-cta"); }
+
+    // פילוח: עד איפה אנשים גוללים
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          io.unobserve(en.target);
+          track("section_view", { page_id: PAGE_ID, section_order: items.indexOf(en.target) + 1, section: nameOf(en.target) });
+        });
+      }, { threshold: 0 });
+      items.forEach(function (el) { io.observe(el); });
+    }
+
+    // לחיצת מקש: באייפון :active על קישור לא נדלק בלי מאזין מגע
+    var pressed = null;
+    addEventListener("pointerdown", function (e) {
+      pressed = e.target.closest && e.target.closest(".tile");
+      if (pressed) pressed.classList.add("is-down");
+    }, { passive: true });
+    addEventListener("pointercancel", function () { if (pressed) pressed.classList.remove("is-down"); });
+    addEventListener("pointerup", function () {
+      var el = pressed;
+      if (el) setTimeout(function () { el.classList.remove("is-down"); }, 120);
+    });
+
+    // ═════ קישור אישי מהוואטסאפ (?c=): לחיצה אחת משייכת את ההתעניינות מהוובינר לאוריאל, בלי טופס ═════
+    // בלי מזהה: הקישור הרגיל של הכפתור פותח וואטסאפ עם הודעה מוכנה
+    var QUICK_LEAD_URL = "https://hook.eu2.make.com/hytus2p3dio30sexjuu3ukzpq9b9yj15"; // hook 4491717 ⇐ תרחיש 10109304
+    var ALERT_URL = "https://hook.eu2.make.com/dkslglnu96j64jw1ufuddvviy05l5lmd"; // hook 4450526, מייל לטום
+    var isLocal = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+    var opener_ = document.getElementById("cbOpen");
+    var repOrder = items.indexOf(opener_) + 1;
+    var contactId = "";
+    try {
+      var qp = new URLSearchParams(location.search);
+      contactId = /^\d+$/.test(qp.get("c") || "") ? qp.get("c") : ""; // user_id של מאני-צ'אט
+      if (isLocal && qp.get("test_webhook")) QUICK_LEAD_URL = qp.get("test_webhook");
+    } catch (e) {}
+    var quickState = "";
+
+    function alertTom(detail) {
+      if (isLocal) { console.warn("[alert:dev]", detail, contactId); return; }
+      var body = new URLSearchParams({ page: PAGE_ID, title: "לחיצה על נציג לא הגיעה מדף הקהילה", message: "גולש לחץ על כפתור הנציג והשליחה נכשלה. הוא הועבר לוואטסאפ עם הודעה מוכנה.", action: "לבדוק את תרחיש 10109304 במייק, ולחפש את המנוי לפי המזהה.", detail: String(detail).slice(0, 300), full_name: "מזהה מאני-צ'אט " + contactId, url: location.href.slice(0, 300), time: new Date().toISOString() });
+      try { if (navigator.sendBeacon && navigator.sendBeacon(ALERT_URL, body)) return; } catch (e) {}
+      try { fetch(ALERT_URL, { method: "POST", body: body, keepalive: true, mode: "no-cors" }); } catch (e) {}
+    }
+    function showSent() {
+      quickState = "sent";
+      opener_.classList.remove("is-sending");
+      opener_.classList.add("is-sent");
+      opener_.querySelector(".ttl").textContent = "קיבלנו, תודה!";
+      opener_.querySelector(".sub").innerHTML = "נציג יתקשר מהמספר <bdi dir=\"ltr\">058-401-2202</bdi>";
+      document.getElementById("repStatus").textContent = "קיבלנו. נציג המועדון יתקשר אליכם מהמספר 058-401-2202";
+      track("generate_lead", { form: "quick_call", confirmed: true, page_id: PAGE_ID, section_order: repOrder, section: "kehila-rep" });
+    }
+    function quickLead() {
+      quickState = "sending";
+      opener_.classList.add("is-sending");
+      opener_.querySelector(".ttl").textContent = "שולחים…";
+      var ctrl = window.AbortController ? new AbortController() : null;
+      var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 15000);
+      var body = new URLSearchParams({ user_id: contactId, source: "דף הקהילה", note: "ביקש שנציג יחזור אליו", page: PAGE_ID, landing_page: location.href.slice(0, 500), client_time: new Date().toISOString() });
+      fetch(QUICK_LEAD_URL, { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" }, body: body.toString(), signal: ctrl ? ctrl.signal : undefined })
+        .then(function (r) { return r.text().then(function (t) { return { ok: r.ok, status: r.status, txt: t || "" }; }); })
+        .then(function (r) {
+          clearTimeout(timer);
+          var confirmed = false;
+          try { confirmed = JSON.parse(r.txt).ok === true; } catch (e2) {}
+          // Accepted = הבקשה בתור של Make והתרחיש לא אישר: לגולש הצלחה, לטום התראה
+          if (r.ok && !confirmed && /accepted/i.test(r.txt)) alertTom("scenario-no-confirm");
+          else if (!r.ok || !confirmed) throw new Error("http " + r.status + " " + r.txt.slice(0, 120));
+          showSent();
+        })
+        .catch(function (err) {
+          clearTimeout(timer);
+          // לא מאבדים פנייה: מתריעים ומעבירים לוואטסאפ עם ההודעה המוכנה
+          quickState = "failed";
+          opener_.classList.remove("is-sending");
+          opener_.querySelector(".ttl").textContent = "אשמח שנציג מהמועדון יתקשר אליי";
+          alertTom(err && err.message || err);
+          location.href = opener_.href;
+        });
+    }
+    opener_.addEventListener("click", function (e) {
+      if (!contactId || quickState === "failed") return; // הקישור הרגיל: וואטסאפ
+      e.preventDefault();
+      if (quickState === "") quickLead();
+    });
+
+    // לחיצה על קוביה
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest("[data-cta]");
+      if (!a) return;
+      var name = a.getAttribute("data-cta");
+      track("cta_click", { location: name, page_id: PAGE_ID, section_order: items.indexOf(a) + 1, section: name });
+    });
+  })();
+  </script>
+  <script src="meta-pixel.js" data-page="kehila" defer></script>
+</body>
+</html>
